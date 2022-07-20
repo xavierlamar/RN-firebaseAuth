@@ -1,20 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './src/Screens/Home';
+import HomeScreen from './src/Screens/HomeScreen';
+import FileUploadScreen from './src/Screens/FileUploadScreen';
+import { AntDesign } from '@expo/vector-icons';
+import { Button, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+
+const UploadFile =()=>{
+  console.log("hello");
+}
+function App() {
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* <Stack.Screen options={{headerShown: false}} name="Home" component={Home} />
+        <Stack.Screen  name="HomeScreen" component={HomeScreen} /> */}
+        <Stack.Screen 
+         name="FileUpload" 
+         component={FileUploadScreen} 
+         options ={
+           {title: 'Home page'},
+           {headerRight: () => (
+           <View>
+             <AntDesign onPress={UploadFile}  name="upload" size={34} color="blue" />
+             </View>)
+           }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+button:{
+  width:100,
+  height:100
+}
+})
+
+export default App;
